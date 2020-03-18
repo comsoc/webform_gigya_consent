@@ -1,0 +1,7 @@
+webform_gigya_consent.settings:
+  type: config_object
+  label: "Webform Gigya Consent settings"
+  mapping:
+    data:
+      type: text
+      label: "Encoded data for all settings"

@@ -1,0 +1,12 @@
+{
+    "name": "comsoc/webform_gigya_consent",
+    "description": "Webform Gigya Consent provides a Webform checkbox element which tracks user consent with Gigya's Consent API.",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Matthew Sielski (msielski)",
+            "role": "Maintainer"
+        }
+    ],
+    "license": "GPL-2.0+"
+}

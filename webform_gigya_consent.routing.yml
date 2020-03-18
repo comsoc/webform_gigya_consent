@@ -1,0 +1,7 @@
+webform_gigya_consent.settings:
+  path: "/admin/config/webform_gigya_consent/settings"
+  defaults:
+    _form: '\Drupal\webform_gigya_consent\Form\SettingsForm'
+    _title: "Webform Gigya Consent Settings"
+  requirements:
+    _permission: "administer site configuration"

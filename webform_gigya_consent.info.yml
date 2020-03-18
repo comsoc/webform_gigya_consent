@@ -1,0 +1,8 @@
+name: "Webform Gigya Consent"
+type: module
+description: "Provides a webform checkbox element which when checked tracks user consent with Gigya's Consent API."
+package: "Gigya"
+core: "8.x"
+dependencies:
+  - "webform:webform"
+configure: webform_gigya_consent.settings

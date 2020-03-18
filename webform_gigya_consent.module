@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Send data from webforms with this component to Gigya for consent tracking.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\webform_gigya_consent\API\GigyaConsent;
+
+/**
+ * Implements hook_form_alter().
+ */
+function webform_gigya_consent_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  // Add our webform_gigya_consent_submit handler to any webform which has a
+  // webform_gigya_consent element in it.
+  if (isset($form['#webform_id'])) {
+    foreach ($form['elements'] as $element) {
+      if ($element['#type'] === 'webform_gigya_consent') {
+        $form['actions']['submit']['#submit'][] = 'webform_gigya_consent_submit';
+        break;
+      }
+    }
+  }
+
+}
+
+/**
+ * Submit handler for webforms with webform_gigya_consent component.
+ */
+function webform_gigya_consent_submit(array $form, FormStateInterface $form_state) {
+  $api = \Drupal::service('gigya_consent');
+  $values = $form_state->getValues();
+
+  // For each webform_gigya_consent element in this form, make an API call.
+  $complete_form = $form_state->getCompleteForm();
+  foreach ($complete_form['elements'] as $element) {
+    if ($element['#type'] === 'webform_gigya_consent') {
+      $api->setUserConsentInfo(
+        $values[$element['#email_field']], 
+        $element['#consent_name'], 
+        true
+      );
+    }
+  }
+
+}

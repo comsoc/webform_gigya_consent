@@ -1,0 +1,4 @@
+services:
+  gigya_consent:
+    class: Drupal\webform_gigya_consent\Services\GigyaConsent
+    arguments: ["@config.factory", "@http_client"]
